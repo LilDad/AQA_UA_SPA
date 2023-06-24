@@ -1,6 +1,5 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { PASSWORD, USEREMAIL } from "../config";
 
 export class SignUpPage extends BasePage {
     expectedText = this.page.locator('//*[@data-testid="regTitle"]');
@@ -9,8 +8,8 @@ export class SignUpPage extends BasePage {
     passwordInput = this.page.locator('//*[@data-testid="regPasswordInput"]');
     regConfirmButton = this.page.locator('//*[@data-testid="regEmailConfirmBtn"]');
 
-    async titleIsDisplayed() {
-        console.log('\'Реєстрація\' title is displayed');
+    async pageIsDisplayed() {
+        console.log('\'Реєстрація\' page is displayed');
         await expect(this.expectedText).toHaveText('Реєстрація');
     }
 
@@ -19,17 +18,11 @@ export class SignUpPage extends BasePage {
         await this.emailTab.click();
     }
 
-    async setEmail() {
+    async signUpEmail(email, password) {
         console.log('Set email');
-        await this.emailInput.type(USEREMAIL);        
-    }
-
-    async setPassword() {
+        await this.emailInput.type(email);
         console.log('Set password');
-        await this.passwordInput.type(PASSWORD);
-    }
-
-    async clickRegConfirmButton() {
+        await this.passwordInput.type(password);
         console.log('Click registration submit button');
         await this.regConfirmButton.click();
     }

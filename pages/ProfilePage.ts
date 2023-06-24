@@ -1,6 +1,5 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { USEREMAIL } from "../config";
 
 export class ProfilePage extends BasePage {
     playerID = this.page.locator('//*[@data-testid="playerName"]');
@@ -12,9 +11,9 @@ export class ProfilePage extends BasePage {
         await expect(this.playerID.isEnabled()).toBeTruthy();
     }
 
-    async playerEmailIsMatches() {
+    async playerEmailIsMatches(email) {
         console.log('Player email is matches');
-        await expect(this.playerEmail).toHaveText(USEREMAIL);
+        await expect(this.playerEmail).toHaveText(email);
     }
 
     async clickPersonalInfoButton() {
