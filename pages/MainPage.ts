@@ -1,21 +1,18 @@
 import { expect } from "@playwright/test";
 import { BasePage } from "./BasePage";
-import { LINK, PASSWORD, USEREMAIL } from "../config";
-
 
 export class MainPage extends BasePage {
     registrationButton = this.page.locator('//*[@data-testid="registrationBtn"]');
     loginButton = this.page.locator('//*[@data-testid="loginBtn"]');
-    // expectedBalance = this.page.locator('//*[@data-testid="balanceAmount"]');
     loginInput = this.page.locator('//*[@data-testid="loginFormAuthInput"]');
     passwordInput = this.page.locator('//*[@data-testid="loginFormPasswordInput"]');
     loginSubmitButton = this.page.locator('//*[@data-testid="loginBtn"]');
     profileButton = this.page.locator('//*[@data-testid="profileBtn"]');
     closeCashboxButton = this.page.locator('button[class="pu-cashbox-dialog__close-btn"]');
 
-    async open() {
+    async open(link) {
         console.log('Open page: DEV UA');
-        await super.open(LINK);
+        await super.open(link);
     }
 
     async clickRegistrationButton() {
@@ -28,22 +25,11 @@ export class MainPage extends BasePage {
         await this.loginButton.click();
     }
 
-    // async balanceIsDisplayed() {
-    //     console.log('Balance is displayed');
-    //     expect(await this.expectedBalance.isEnabled()).toBeTruthy();
-    // }
-
-    async setEmail() {
+    async login(email, password) {
         console.log('Set email');
-        await this.loginInput.type(USEREMAIL)
-    }
-
-    async setPassword() {
+        await this.loginInput.type(email);
         console.log('Set password');
-        await this.passwordInput.type(PASSWORD)
-    }
-
-    async submitLoginForm() {
+        await this.passwordInput.type(password);
         console.log('Submit login form');
         await this.loginSubmitButton.click();
     }
