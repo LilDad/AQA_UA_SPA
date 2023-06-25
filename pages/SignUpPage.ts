@@ -9,7 +9,7 @@ export class SignUpPage extends BasePage {
     regConfirmButton = this.page.locator('//*[@data-testid="regEmailConfirmBtn"]');
 
     async pageIsDisplayed() {
-        console.log('\'Реєстрація\' page is displayed');
+        console.log("'Реєстрація' page is displayed");
         await expect(this.expectedText).toHaveText('Реєстрація');
     }
 
